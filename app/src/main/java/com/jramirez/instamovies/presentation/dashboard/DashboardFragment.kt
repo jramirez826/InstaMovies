@@ -1,4 +1,4 @@
-package com.jramirez.instamovies.ui.dashboard
+package com.jramirez.instamovies.presentation.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

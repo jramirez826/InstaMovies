@@ -1,4 +1,4 @@
-package com.jramirez.instamovies.ui.notifications
+package com.jramirez.instamovies.presentation.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
