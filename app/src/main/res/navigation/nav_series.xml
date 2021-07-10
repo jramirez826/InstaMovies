@@ -2,28 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_movies">
-
-    <fragment
-        android:id="@+id/navigation_movies"
-        android:name="com.jramirez.instamovies.presentation.movies.MoviesFragment"
-        android:label="@string/title_movies"
-        tools:layout="@layout/fragment_media" >
-        <action
-            android:id="@+id/action_navigation_movies_to_navigation_detail"
-            app:destination="@id/navigation_detail"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
+    android:id="@+id/nav_series"
+    app:startDestination="@id/navigation_series">
 
     <fragment
         android:id="@+id/navigation_series"
         android:name="com.jramirez.instamovies.presentation.series.SeriesFragment"
         android:label="@string/title_series"
-        tools:layout="@layout/fragment_series" >
+        tools:layout="@layout/fragment_media">
         <action
             android:id="@+id/action_navigation_series_to_navigation_detail"
             app:destination="@id/navigation_detail" />

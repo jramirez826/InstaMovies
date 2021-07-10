@@ -8,10 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jramirez.instamovies.data.model.Media
-import com.jramirez.instamovies.domain.usecase.GetMoviesUseCase
 import com.jramirez.instamovies.domain.usecase.GetSeriesUseCase
 import com.jramirez.instamovies.presentation.base.BundleConstants
 import com.jramirez.instamovies.presentation.base.CellClickListener
+import com.jramirez.instamovies.presentation.base.SingleLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +24,7 @@ class SeriesViewModel @Inject constructor(private val getSeriesUseCase: GetSerie
     private val _itemsLiveData = MutableLiveData<List<Any>>()
     val itemLiveData: LiveData<List<Any>> get() = _itemsLiveData
 
-    private val _bundleLiveData = MutableLiveData<Bundle>()
-    val bundleLiveData: LiveData<Bundle> get() = _bundleLiveData
+    val bundleLiveData = SingleLiveData<Bundle>()
 
     fun getSeries() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -39,6 +38,6 @@ class SeriesViewModel @Inject constructor(private val getSeriesUseCase: GetSerie
         val bundle = Bundle().apply {
             putParcelable(BundleConstants.MOVIE, item)
         }
-        _bundleLiveData.postValue(bundle)
+        bundleLiveData.value = bundle
     }
 }

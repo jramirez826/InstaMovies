@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.jramirez.instamovies.R
 import com.jramirez.instamovies.databinding.FragmentMediaBinding
 import com.jramirez.instamovies.presentation.base.MediaAdapter
@@ -25,6 +27,8 @@ class SeriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val appBarConfig = AppBarConfiguration(setOf(R.id.navigation_series))
+        NavigationUI.navigateUp(findNavController(), appBarConfig)
         _binding = FragmentMediaBinding.inflate(inflater, container, false)
         return binding.root
     }

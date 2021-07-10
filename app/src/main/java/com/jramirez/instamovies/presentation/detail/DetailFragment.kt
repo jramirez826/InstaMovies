@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.jramirez.instamovies.data.model.Media
 import com.jramirez.instamovies.databinding.FragmentDetailBinding
 import com.jramirez.instamovies.presentation.base.BundleConstants
@@ -27,6 +29,16 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpBinding()
+//        requireActivity().onBackPressedDispatcher.addCallback(
+//            viewLifecycleOwner,
+//            object : OnBackPressedCallback(true) {
+//
+//                override fun handleOnBackPressed() {
+//                    if (findNavController().navigateUp()) {
+//                        findNavController().popBackStack()
+//                    }
+//                }
+//            })
     }
 
     private fun setUpBinding() {
