@@ -11,7 +11,7 @@ class GetMoviesUseCaseImpl @Inject constructor(private val moviesRepository: Mov
         val result: MutableList<Any> = mutableListOf()
         enumValues<MovieGenre>().forEach {
             result.add(it)
-            val movies = moviesRepository.getMovies(it.id)
+            val movies = moviesRepository.getMedia(it.id())
             result.addAll(movies)
         }
         return result

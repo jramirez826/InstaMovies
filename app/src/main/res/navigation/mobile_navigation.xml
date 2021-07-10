@@ -9,17 +9,21 @@
         android:id="@+id/navigation_movies"
         android:name="com.jramirez.instamovies.presentation.movies.MoviesFragment"
         android:label="@string/title_movies"
-        tools:layout="@layout/fragment_movies" >
+        tools:layout="@layout/fragment_media" >
         <action
             android:id="@+id/action_navigation_movies_to_navigation_detail"
-            app:destination="@id/navigation_detail" />
+            app:destination="@id/navigation_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_series"
-        android:name="com.jramirez.instamovies.presentation.series.DashboardFragment"
+        android:name="com.jramirez.instamovies.presentation.series.SeriesFragment"
         android:label="@string/title_series"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_series" >
         <action
             android:id="@+id/action_navigation_series_to_navigation_detail"
             app:destination="@id/navigation_detail" />
@@ -27,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_detail"
-        android:name="com.jramirez.instamovies.presentation.detail.NotificationsFragment"
+        android:name="com.jramirez.instamovies.presentation.detail.DetailFragment"
         android:label="@string/title_detail"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_detail" />
 </navigation>

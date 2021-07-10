@@ -21,6 +21,7 @@ android {
 
         buildConfigField "String", "BASE_URL", BASE_URL
         buildConfigField "String", "API_KEY", API_KEY
+        buildConfigField "String", "IMAGES_URL", IMAGES_URL
     }
 
     buildTypes {
@@ -75,4 +76,7 @@ dependencies {
     // Hilt dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 }

@@ -1,4 +1,4 @@
-package com.jramirez.instamovies.presentation.movies
+package com.jramirez.instamovies.presentation.series
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +13,9 @@ import com.jramirez.instamovies.presentation.base.MediaAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MoviesFragment : Fragment() {
+class SeriesFragment : Fragment() {
 
-    private val moviesViewModel: MoviesViewModel by viewModels()
+    private val seriesViewModel: SeriesViewModel by viewModels()
     private var _binding: FragmentMediaBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: MediaAdapter
@@ -33,7 +33,7 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpBinding()
         setUpLiveData()
-        moviesViewModel.getMovies()
+        seriesViewModel.getSeries()
     }
 
     override fun onDestroyView() {
@@ -43,17 +43,17 @@ class MoviesFragment : Fragment() {
 
     private fun setUpBinding() {
         with(binding) {
-            adapter = MediaAdapter(moviesViewModel)
+            adapter = MediaAdapter(seriesViewModel)
             rvMovies.adapter = adapter
         }
     }
 
     private fun setUpLiveData() {
-        moviesViewModel.itemLiveData.observe(viewLifecycleOwner, {
+        seriesViewModel.itemLiveData.observe(viewLifecycleOwner, {
             adapter.updateItems(it)
         })
-        moviesViewModel.bundleLiveData.observe(viewLifecycleOwner, {
-            findNavController().navigate(R.id.action_navigation_movies_to_navigation_detail, it)
+        seriesViewModel.bundleLiveData.observe(viewLifecycleOwner, {
+            findNavController().navigate(R.id.action_navigation_series_to_navigation_detail, it)
         })
     }
 }

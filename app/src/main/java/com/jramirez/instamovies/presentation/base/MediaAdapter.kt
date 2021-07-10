@@ -1,17 +1,17 @@
-package com.jramirez.instamovies.presentation.movies
+package com.jramirez.instamovies.presentation.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jramirez.instamovies.data.model.Movie
+import com.jramirez.instamovies.data.model.Media
 import com.jramirez.instamovies.databinding.ItemListBinding
 import com.jramirez.instamovies.databinding.TitleItemListBinding
+import com.jramirez.instamovies.domain.model.BaseGenre
 import com.jramirez.instamovies.domain.model.MovieGenre
-import com.jramirez.instamovies.presentation.base.AdapterViewType
-import com.jramirez.instamovies.presentation.base.BaseViewHolder
-import com.jramirez.instamovies.presentation.base.TitleViewHolder
+import com.jramirez.instamovies.presentation.base.*
 
-class MoviesAdapter : RecyclerView.Adapter<BaseViewHolder<*, *>>() {
+class MediaAdapter(private val cellClickListener: CellClickListener<Media>? = null) :
+    RecyclerView.Adapter<BaseViewHolder<*, *>>() {
 
     private val items: MutableList<Any> = mutableListOf()
 
@@ -20,8 +20,8 @@ class MoviesAdapter : RecyclerView.Adapter<BaseViewHolder<*, *>>() {
     override fun getItemViewType(position: Int): Int {
         val comparable = items[position]
         return when (comparable) {
-            is Movie -> AdapterViewType.ITEM.ordinal
-            is MovieGenre -> AdapterViewType.TITLE.ordinal
+            is Media -> AdapterViewType.ITEM.ordinal
+            is BaseGenre -> AdapterViewType.TITLE.ordinal
             else -> throw IllegalArgumentException("View Type not supported in $position")
         }
     }
@@ -36,7 +36,7 @@ class MoviesAdapter : RecyclerView.Adapter<BaseViewHolder<*, *>>() {
             AdapterViewType.ITEM.ordinal -> {
                 val binding =
                     ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                MoviesViewHolder(binding)
+                MediaViewHolder(binding)
             }
             else -> throw IllegalArgumentException("View Type not supported")
         }
@@ -45,8 +45,8 @@ class MoviesAdapter : RecyclerView.Adapter<BaseViewHolder<*, *>>() {
     override fun onBindViewHolder(holder: BaseViewHolder<*, *>, position: Int) {
         val item = items[position]
         when (holder) {
-            is MoviesViewHolder -> holder.bind(item as Movie)
-            is TitleViewHolder -> holder.bind(item as MovieGenre)
+            is MediaViewHolder -> holder.bind(item as Media, cellClickListener)
+            is TitleViewHolder -> holder.bind(item as BaseGenre, null)
             else -> throw IllegalArgumentException()
         }
     }
