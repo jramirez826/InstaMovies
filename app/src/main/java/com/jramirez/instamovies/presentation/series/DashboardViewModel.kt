@@ -1,4 +1,4 @@
-package com.jramirez.instamovies.presentation.dashboard
+package com.jramirez.instamovies.presentation.series
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

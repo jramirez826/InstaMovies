@@ -11,6 +11,7 @@ class MoviesViewHolder(private val binding: ItemListBinding) :
     override fun bind(item: Movie) {
         with(binding) {
             imgPoster.setImageResource(R.drawable.notification_bg_normal)
+            labTitle.text = item.originalTitle
         }
     }
 }

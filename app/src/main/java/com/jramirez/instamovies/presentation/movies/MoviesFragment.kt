@@ -15,6 +15,7 @@ class MoviesFragment : Fragment() {
     private val moviesViewModel: MoviesViewModel by viewModels()
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
+    private val adapter: MoviesAdapter = MoviesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,14 +28,25 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            rvMovies.adapter
-        }
+        setUpBinding()
+        setUpLiveData()
         moviesViewModel.getMovies()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setUpBinding() {
+        with(binding) {
+            rvMovies.adapter = adapter
+        }
+    }
+
+    private fun setUpLiveData() {
+        moviesViewModel.itemLiveData.observe(viewLifecycleOwner, {
+            adapter.updateItems(it)
+        })
     }
 }
